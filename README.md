@@ -8,6 +8,7 @@ download, uncompress
 ## Getting Started
 
 ```bash
+pip install -r requirement.txt
 vim cluster.conf
 ```
 
