@@ -2,6 +2,7 @@
 
 import sys
 import threading
+import ConfigParser
 
 import prometheus_client
 
@@ -17,8 +18,12 @@ app = Flask(__name__)
 
 REGISTRY = CollectorRegistry(auto_describe=False)
 
-zookeepers = "10.77.115.46:2181/kafka/sina1003"
-kafka_broker = "10.77.115.92"
+conf = ConfigParser.ConfigParser()
+conf.read("cluster.conf")
+
+cluster = conf.sections()[0]
+zookeepers = conf.get(cluster, "zk")
+kafka_broker = conf.get(cluster, "brokers")
 broker_list = kafka_broker.split(",")
 zk = KazooClient(hosts=zookeepers, read_only=True)
 zk.start()
