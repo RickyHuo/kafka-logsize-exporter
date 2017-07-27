@@ -3,7 +3,7 @@
 ## Installation
 
 
-download, uncomperss
+download, uncompress
 
 ## Getting Started
 
