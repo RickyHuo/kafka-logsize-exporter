@@ -12,7 +12,7 @@ vim cluster.conf
 ```
 
 ```
-# cluster alisa
+# cluster name alias
 [kafka1003]
 # zookeeper
 zk = 127.0.0.1:2128/kafka1003
