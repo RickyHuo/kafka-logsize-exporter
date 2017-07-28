@@ -60,11 +60,18 @@ def log_size():
     # request_count + 1
     requests_total.inc()
 
+    thread_list = []
     topics = zk.get_children("/brokers/topics")
     for i in range(len(topics)):
         topic = topics[i]
         t = threading.Thread(target=thread_main, args=(topic, ))
+        thread_list.append(t)
+
+    for t in thread_list:
         t.start()
+
+    for t in thread_list:
+        t.join()
 
     return Response(prometheus_client.generate_latest(REGISTRY),
                     mimetype="text/plain")
